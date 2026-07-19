@@ -4,3 +4,8 @@
 /target/
 /logs/
 /dist/
+/site/
+/pack/schemas/
+/pack/.cache/
+/pack/servers/NewPlay-1.21.4/files/shaderpacks/*.zip
+!/pack/servers/NewPlay-1.21.4/files/shaderpacks/.gitkeep

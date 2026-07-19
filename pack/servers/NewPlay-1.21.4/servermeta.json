@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "name": "뉴플레이",
+    "description": "뉴플레이 Minecraft 1.21.4",
+    "icon": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/NewPlay.png",
+    "address": "newplay.kr",
+    "mainServer": true,
+    "autoconnect": true,
+    "javaOptions": {
+      "supported": ">=21 <22",
+      "suggestedMajor": 21,
+      "ram": {
+        "minimum": 2048,
+        "recommended": 4096
+      }
+    }
+  },
+  "fabric": {
+    "version": "0.16.9"
+  },
+  "untrackedFiles": []
+}
