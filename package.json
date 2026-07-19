@@ -1,22 +1,21 @@
 {
-  "name": "helioslauncher",
-  "version": "2.2.1",
-  "productName": "Helios Launcher",
-  "description": "Modded Minecraft Launcher",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
-  "license": "UNLICENSED",
-  "homepage": "https://github.com/dscalzi/HeliosLauncher",
+  "name": "newplay-launcher",
+  "version": "1.0.0",
+  "productName": "뉴플레이 런처",
+  "description": "newplay.kr 전용 Minecraft 1.21.4 런처",
+  "author": "morebetter-dev",
+  "license": "MIT",
+  "homepage": "https://github.com/morebetter-dev/NewPlay-launcher",
   "bugs": {
-    "url": "https://github.com/dscalzi/HeliosLauncher/issues"
+    "url": "https://github.com/morebetter-dev/NewPlay-launcher/issues"
   },
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "electron .",
+    "test": "node --test",
     "dist": "electron-builder build",
-    "dist:win": "npm run dist -- -w",
-    "dist:mac": "npm run dist -- -m",
-    "dist:linux": "npm run dist -- -l",
+    "dist:win": "npm run dist -- -w --x64",
     "lint": "eslint ."
   },
   "engines": {
@@ -47,6 +46,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dscalzi/HeliosLauncher.git"
+    "url": "git+https://github.com/morebetter-dev/NewPlay-launcher.git"
   }
 }

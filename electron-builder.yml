@@ -1,20 +1,21 @@
-appId: 'helioslauncher'
-productName: 'Helios Launcher'
+appId: 'kr.newplay.launcher'
+productName: '뉴플레이 런처'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2018-2026 Daniel Scalzi'
+copyright: 'Copyright © 2026 morebetter-dev; HeliosLauncher © Daniel Scalzi'
 
 asar: true
 compression: 'maximum'
 
 files:
-  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs,test,scripts,pack,site}'
 
 extraResources:
   - 'libraries'
 
 # Windows Configuration
 win: 
+  icon: 'build/icon.png'
   target: 
     - target: 'nsis'
       arch: 'x64'
@@ -26,26 +27,12 @@ nsis:
   allowElevation: true
   allowToChangeInstallationDirectory: true
 
-# macOS Configuration
-mac:
-  target:
-    - target: 'dmg'
-      arch:
-        - 'x64'
-        - 'arm64'
-  artifactName: '${productName}-setup-${version}-${arch}.${ext}'
-  category: 'public.app-category.games'
-
-# Linux Configuration
-linux: 
-  target: 'AppImage'
-  maintainer: 'Daniel Scalzi'
-  vendor: 'Daniel Scalzi'
-  synopsis: 'Modded Minecraft Launcher'
-  description: 'Custom launcher which allows users to join modded servers. All mods, configurations, and updates are handled automatically.'
-  category: 'Game'
-
-
 directories:
   buildResources: 'build'
   output: 'dist'
+
+publish:
+  provider: github
+  owner: morebetter-dev
+  repo: NewPlay-launcher
+  releaseType: draft
