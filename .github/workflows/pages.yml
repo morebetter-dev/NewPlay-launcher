@@ -1,0 +1,63 @@
+name: Deploy modpack to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'pack/**'
+      - 'scripts/fetch-third-party.ps1'
+      - 'scripts/prepare-pages.js'
+      - 'scripts/verify-distribution.js'
+      - '.github/workflows/pages.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: dscalzi/Nebula
+          ref: 7ffc978727b95e03ae9d125688cf5cf132b78419
+          path: .nebula
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci --prefix .nebula
+      - run: npm run build --prefix .nebula
+      - shell: pwsh
+        run: ./scripts/fetch-third-party.ps1
+      - name: Generate distribution
+        env:
+          ROOT: ${{ github.workspace }}/pack
+          BASE_URL: https://morebetter-dev.github.io/NewPlay-launcher/
+        run: node .nebula/dist/index.js generate distro
+      - run: npm run pack:prepare
+      - run: npm run pack:verify
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
