@@ -201,7 +201,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 - 코드 서명 인증서가 없는 초기 빌드는 Windows SmartScreen 경고가 표시될 수 있다.
 - Entra Client ID 발급과 Minecraft API 승인은 저장소 외부에서 완료해야 한다.
 - GitHub Release 게시 권한이 있는 계정 또는 토큰이 필요하다.
-- HeliosLauncher 저장소에는 명시적인 `LICENSE` 파일이 없고 `package.json`은 `UNLICENSED`로 표시되므로, 공개 배포 전에 원저자에게 재배포·수정 허용 범위를 확인하고 요청된 저자 표기와 원본 링크를 유지한다.
+- HeliosLauncher의 `LICENSE.txt`에 따른 MIT 저작권·허가 고지를 배포물과 저장소에 유지하고, README에 요청된 저자 표기와 원본 링크도 함께 제공한다.
 - 모드와 셰이더팩은 각 프로젝트의 재배포 조건을 Release 전에 확인한다.
 
 ## 12. 의도적인 단순화
