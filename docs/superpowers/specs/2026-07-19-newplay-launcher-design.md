@@ -126,7 +126,7 @@ Nebula는 `pack/`을 입력으로 사용해 `distribution.json`을 생성한다.
 1. 런처 시작 시 GitHub Pages의 최신 `distribution.json`을 HTTPS로 요청한다.
 2. 요청 성공 시 로컬 캐시를 갱신하고, 실패 시 마지막 정상 배포 정보를 사용한다.
 3. 사용자가 게임 시작을 누르면 Java 21 설치 상태를 확인한다.
-4. Mojang 및 Fabric 공식 배포 파일과 GitHub Pages의 뉴플레이 파일을 검사한다.
+4. Mojang·Fabric·Modrinth 공식 배포 파일과 GitHub Pages의 뉴플레이 파일을 검사한다.
 5. 크기와 해시가 맞지 않는 파일만 다운로드한다.
 6. Microsoft 인증 토큰으로 Minecraft를 실행한다.
 7. 자동 접속 인수로 `newplay.kr`에 연결한다.
@@ -141,19 +141,26 @@ Nebula는 `pack/`을 입력으로 사용해 `distribution.json`을 생성한다.
 https://morebetter-dev.github.io/NewPlay-launcher/distribution.json
 ```
 
-Nebula가 만든 폴더 구조는 `gh-pages` 브랜치 루트에 그대로 게시한다. 이 구조에는 다음 파일이 포함된다.
+Nebula가 만든 폴더 구조에서 라이선스상 외부 배포가 필요한 파일만 분리한 뒤, 나머지를 `gh-pages` 브랜치 루트에 게시한다. 이 구조에는 다음 파일이 포함된다.
 
 - `distribution.json`
 - Fabric 버전 메타데이터와 라이브러리
 - 버전이 고정된 모드 JAR 4개
-- 셰이더팩 ZIP
+
+Complementary Unbound ZIP은 라이선스가 직접 재업로드를 금지하므로 GitHub Pages에 올리지 않는다. `distribution.json`의 셰이더 모듈 URL만 다음 Modrinth 공식 파일로 바꾸고, 크기와 SHA-512가 제공된 원본 ZIP과 일치하는지 배포 전에 확인한다.
+
+```text
+https://cdn.modrinth.com/data/R6NEzAwj/versions/VMHXIk50/ComplementaryUnbound_r5.8.1.zip
+```
+
+뉴플레이 런처와 README에는 Complementary Development의 저작물임을 보이게 표시하고 공식 프로젝트 링크를 제공한다. 셰이더 ZIP 내용은 수정하지 않는다.
 
 각 GitHub Release에는 런처 업데이트에 필요한 다음 파일만 올린다.
 
 - Windows x64 NSIS 설치 파일
 - Electron updater 메타데이터와 패키지
 
-`distribution.json` 내부 파일 URL은 GitHub Pages의 동일 폴더 구조를 가리킨다. 새 팩은 Nebula 출력 전체를 검증한 뒤 `gh-pages` 브랜치를 한 번에 갱신해 인덱스와 파일 버전이 섞이지 않게 한다.
+`distribution.json` 내부 뉴플레이 파일 URL은 GitHub Pages의 동일 폴더 구조를, Complementary Unbound는 위 Modrinth URL을 가리킨다. 새 팩은 게시용 출력 전체를 검증한 뒤 `gh-pages` 브랜치를 한 번에 갱신해 인덱스와 파일 버전이 섞이지 않게 한다.
 
 런처 Release는 초안으로 만든 뒤 설치 파일과 updater 메타데이터를 검증하고 마지막에 공개한다. 모드팩만 변경한 경우에는 새 런처 Release 없이 `distribution.json`의 서버 팩 버전을 올리고 GitHub Pages만 갱신한다.
 
@@ -185,7 +192,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 
 - `npm run lint`
 - Nebula 배포 JSON 스키마 검증
-- 모든 GitHub Pages 배포 자산 URL의 HTTPS 응답 확인
+- 모든 GitHub Pages 및 Modrinth 배포 자산 URL의 HTTPS 응답 확인
 - 배포 JSON의 파일 크기·해시와 실제 자산 비교
 - Electron Windows x64 패키징 성공 확인
 
@@ -209,6 +216,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 - GitHub Release 게시와 `gh-pages` 브랜치 갱신 권한이 있는 계정 또는 토큰이 필요하다.
 - HeliosLauncher의 `LICENSE.txt`에 따른 MIT 저작권·허가 고지를 배포물과 저장소에 유지하고, README에 요청된 저자 표기와 원본 링크도 함께 제공한다.
 - 모드와 셰이더팩은 각 프로젝트의 재배포 조건을 Release 전에 확인한다.
+- Complementary Unbound는 GitHub Pages나 Release에 재업로드하지 않고 Modrinth 공식 파일만 사용한다.
 
 ## 12. 의도적인 단순화
 
