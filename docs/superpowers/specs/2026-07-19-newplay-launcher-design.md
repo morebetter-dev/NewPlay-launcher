@@ -16,7 +16,7 @@
 3. Minecraft 1.21.4, Java 21, Fabric과 지정된 클라이언트 파일을 자동 설치한다.
 4. 파일 손상을 검출하고 필요한 파일만 다시 내려받는다.
 5. Minecraft 실행 후 `newplay.kr`에 자동 접속한다.
-6. GitHub Releases를 통해 런처와 모드팩을 갱신할 수 있다.
+6. GitHub Releases로 런처를, GitHub Pages로 모드팩을 갱신할 수 있다.
 
 ## 2. 범위
 
@@ -30,7 +30,7 @@
 - Minecraft 1.21.4와 Fabric Loader 설치
 - 필수 모드와 셰이더팩 자동 설치·검증
 - 셰이더 기본 활성화와 사용자 비활성화 설정
-- GitHub Releases 기반 런처·배포 파일 업데이트
+- GitHub Releases 기반 런처 업데이트와 GitHub Pages 기반 모드팩 배포
 - 한국어 사용자 오류 메시지
 
 ### 제외
@@ -116,40 +116,46 @@ Nebula는 `pack/`을 입력으로 사용해 `distribution.json`을 생성한다.
 - 본문 글꼴: Pretendard와 시스템 sans-serif fallback
 - 포커스 가능한 요소: 보이는 2px brand 색상 ring
 - 텍스트 대비: WCAG AA 4.5:1 이상
+- 드롭다운 상위 컨테이너: `overflow: visible`
+- 드롭다운 패널: `z-index: 9999`, 최대 높이 300px 이후 내부 세로 스크롤
 
 초기 시안은 방향을 정의하는 기준이며, 이후 CSS와 이미지 변경으로 디자인을 계속 다듬을 수 있다.
 
 ## 6. 실행 데이터 흐름
 
-1. 런처 시작 시 GitHub Releases의 최신 `distribution.json`을 HTTPS로 요청한다.
+1. 런처 시작 시 GitHub Pages의 최신 `distribution.json`을 HTTPS로 요청한다.
 2. 요청 성공 시 로컬 캐시를 갱신하고, 실패 시 마지막 정상 배포 정보를 사용한다.
 3. 사용자가 게임 시작을 누르면 Java 21 설치 상태를 확인한다.
-4. Mojang 및 Fabric 공식 배포 파일과 GitHub Release의 뉴플레이 파일을 검사한다.
+4. Mojang 및 Fabric 공식 배포 파일과 GitHub Pages의 뉴플레이 파일을 검사한다.
 5. 크기와 해시가 맞지 않는 파일만 다운로드한다.
 6. Microsoft 인증 토큰으로 Minecraft를 실행한다.
 7. 자동 접속 인수로 `newplay.kr`에 연결한다.
 
 최초 실행에서 원격 배포 정보를 한 번도 받은 적이 없으면 게임을 실행하지 않고 재시도 안내를 표시한다. 서버 상태 확인 실패는 게임 실행을 막지 않는다.
 
-## 7. GitHub Releases 배포
+## 7. GitHub Pages 및 Releases 배포
 
 런처가 읽는 배포 인덱스 주소는 다음으로 고정한다.
 
 ```text
-https://github.com/morebetter-dev/NewPlay-launcher/releases/latest/download/distribution.json
+https://morebetter-dev.github.io/NewPlay-launcher/distribution.json
 ```
 
-각 Release에는 다음 파일을 함께 올린다.
+Nebula가 만든 폴더 구조는 `gh-pages` 브랜치 루트에 그대로 게시한다. 이 구조에는 다음 파일이 포함된다.
 
-- Windows x64 NSIS 설치 파일
-- Electron updater 메타데이터와 패키지
 - `distribution.json`
+- Fabric 버전 메타데이터와 라이브러리
 - 버전이 고정된 모드 JAR 4개
 - 셰이더팩 ZIP
 
-`distribution.json` 내부 모드·셰이더 URL은 해당 Release의 정확한 태그를 가리킨다. `latest` URL은 배포 인덱스에만 사용해 캐시된 인덱스가 다른 버전의 파일을 받지 않게 한다.
+각 GitHub Release에는 런처 업데이트에 필요한 다음 파일만 올린다.
 
-Release는 초안으로 만든 뒤 파일과 해시를 모두 검증하고 마지막에 공개한다. 모드팩만 변경해도 새 버전 태그와 새 `distribution.json`을 발행한다.
+- Windows x64 NSIS 설치 파일
+- Electron updater 메타데이터와 패키지
+
+`distribution.json` 내부 파일 URL은 GitHub Pages의 동일 폴더 구조를 가리킨다. 새 팩은 Nebula 출력 전체를 검증한 뒤 `gh-pages` 브랜치를 한 번에 갱신해 인덱스와 파일 버전이 섞이지 않게 한다.
+
+런처 Release는 초안으로 만든 뒤 설치 파일과 updater 메타데이터를 검증하고 마지막에 공개한다. 모드팩만 변경한 경우에는 새 런처 Release 없이 `distribution.json`의 서버 팩 버전을 올리고 GitHub Pages만 갱신한다.
 
 ## 8. Microsoft 인증 전제 조건
 
@@ -179,7 +185,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 
 - `npm run lint`
 - Nebula 배포 JSON 스키마 검증
-- 모든 Release 자산 URL의 HTTPS 응답 확인
+- 모든 GitHub Pages 배포 자산 URL의 HTTPS 응답 확인
 - 배포 JSON의 파일 크기·해시와 실제 자산 비교
 - Electron Windows x64 패키징 성공 확인
 
@@ -200,7 +206,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 
 - 코드 서명 인증서가 없는 초기 빌드는 Windows SmartScreen 경고가 표시될 수 있다.
 - Entra Client ID 발급과 Minecraft API 승인은 저장소 외부에서 완료해야 한다.
-- GitHub Release 게시 권한이 있는 계정 또는 토큰이 필요하다.
+- GitHub Release 게시와 `gh-pages` 브랜치 갱신 권한이 있는 계정 또는 토큰이 필요하다.
 - HeliosLauncher의 `LICENSE.txt`에 따른 MIT 저작권·허가 고지를 배포물과 저장소에 유지하고, README에 요청된 저자 표기와 원본 링크도 함께 제공한다.
 - 모드와 셰이더팩은 각 프로젝트의 재배포 조건을 Release 전에 확인한다.
 
@@ -208,5 +214,5 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 
 - 단일 서버 전용이므로 서버 선택과 다중 배포 구성을 만들지 않는다.
 - Windows x64 외 플랫폼 빌드와 테스트를 만들지 않는다.
-- 별도 패치 서버를 운영하지 않고 GitHub Releases를 사용한다.
+- 별도 패치 서버를 운영하지 않고 GitHub Pages와 GitHub Releases를 사용한다.
 - 자동화된 Release 파이프라인은 첫 수동 Release가 검증된 뒤 반복 작업이 실제 부담이 될 때 추가한다.
