@@ -141,7 +141,7 @@ Nebula는 `pack/`을 입력으로 사용해 `distribution.json`을 생성한다.
 https://morebetter-dev.github.io/NewPlay-launcher/distribution.json
 ```
 
-Nebula가 만든 폴더 구조에서 라이선스상 외부 배포가 필요한 파일만 분리한 뒤, 나머지를 `gh-pages` 브랜치 루트에 게시한다. 이 구조에는 다음 파일이 포함된다.
+Nebula가 만든 폴더 구조에서 라이선스상 외부 배포가 필요한 파일만 분리한 뒤, 나머지를 공식 GitHub Pages Actions 배포 아티팩트로 게시한다. 이 구조에는 다음 파일이 포함된다.
 
 - `distribution.json`
 - Fabric 버전 메타데이터와 라이브러리
@@ -160,7 +160,7 @@ https://cdn.modrinth.com/data/R6NEzAwj/versions/VMHXIk50/ComplementaryUnbound_r5
 - Windows x64 NSIS 설치 파일
 - Electron updater 메타데이터와 패키지
 
-`distribution.json` 내부 뉴플레이 파일 URL은 GitHub Pages의 동일 폴더 구조를, Complementary Unbound는 위 Modrinth URL을 가리킨다. 새 팩은 게시용 출력 전체를 검증한 뒤 `gh-pages` 브랜치를 한 번에 갱신해 인덱스와 파일 버전이 섞이지 않게 한다.
+`distribution.json` 내부 뉴플레이 파일 URL은 GitHub Pages의 동일 폴더 구조를, Complementary Unbound는 위 Modrinth URL을 가리킨다. 새 팩은 게시용 출력 전체를 검증한 뒤 하나의 GitHub Pages 아티팩트로 배포해 인덱스와 파일 버전이 섞이지 않게 한다.
 
 런처 Release는 초안으로 만든 뒤 설치 파일과 updater 메타데이터를 검증하고 마지막에 공개한다. 모드팩만 변경한 경우에는 새 런처 Release 없이 `distribution.json`의 서버 팩 버전을 올리고 GitHub Pages만 갱신한다.
 
@@ -213,7 +213,7 @@ Client ID는 비밀값이 아니므로 발급 후 소스에 저장할 수 있다
 
 - 코드 서명 인증서가 없는 초기 빌드는 Windows SmartScreen 경고가 표시될 수 있다.
 - Entra Client ID 발급과 Minecraft API 승인은 저장소 외부에서 완료해야 한다.
-- GitHub Release 게시와 `gh-pages` 브랜치 갱신 권한이 있는 계정 또는 토큰이 필요하다.
+- GitHub Release 게시 권한과 Actions의 `pages: write`, `id-token: write` 권한이 필요하다.
 - HeliosLauncher의 `LICENSE.txt`에 따른 MIT 저작권·허가 고지를 배포물과 저장소에 유지하고, README에 요청된 저자 표기와 원본 링크도 함께 제공한다.
 - 모드와 셰이더팩은 각 프로젝트의 재배포 조건을 Release 전에 확인한다.
 - Complementary Unbound는 GitHub Pages나 Release에 재업로드하지 않고 Modrinth 공식 파일만 사용한다.
