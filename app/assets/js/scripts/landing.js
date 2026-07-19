@@ -2,14 +2,10 @@
  * Script for landing.ejs
  */
 // Requirements
-const { URL }                 = require('url')
 const {
-    MojangRestAPI,
     getServerStatus
 }                             = require('helios-core/mojang')
 const {
-    RestResponseStatus,
-    isDisplayableError,
     validateLocalFile
 }                             = require('helios-core/common')
 const {
@@ -28,7 +24,6 @@ const {
 }                             = require('helios-core/java')
 
 // Internal Requirements
-const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
 
 // Launch Elements
@@ -37,7 +32,6 @@ const launch_details          = document.getElementById('launch_details')
 const launch_progress         = document.getElementById('launch_progress')
 const launch_progress_label   = document.getElementById('launch_progress_label')
 const launch_details_text     = document.getElementById('launch_details_text')
-const server_selection_button = document.getElementById('server_selection_button')
 const user_text               = document.getElementById('user_text')
 
 const loggerLanding = LoggerUtil.getLogger('Landing')
@@ -158,81 +152,13 @@ updateSelectedAccount(ConfigManager.getSelectedAccount())
 
 // Bind selected server
 function updateSelectedServer(serv){
-    if(getCurrentView() === VIEWS.settings){
-        fullSettingsSave()
-    }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
-    if(getCurrentView() === VIEWS.settings){
-        animateSettingsTabRefresh()
+    if(serv != null){
+        document.getElementById('server_address').textContent = serv.rawServer.address
+        document.getElementById('server_version').textContent = `Minecraft ${serv.rawServer.minecraftVersion} · 팩 ${serv.rawServer.version}`
     }
     setLaunchEnabled(serv != null)
-}
-// Real text is set in uibinder.js on distributionIndexDone.
-server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedServer.loading')
-server_selection_button.onclick = async e => {
-    e.target.blur()
-    await toggleServerSelection(true)
-}
-
-// Update Mojang Status Color
-const refreshMojangStatuses = async function(){
-    loggerLanding.info('Refreshing Mojang Statuses..')
-
-    let status = 'grey'
-    let tooltipEssentialHTML = ''
-    let tooltipNonEssentialHTML = ''
-
-    const response = await MojangRestAPI.status()
-    let statuses
-    if(response.responseStatus === RestResponseStatus.SUCCESS) {
-        statuses = response.data
-    } else {
-        loggerLanding.warn('Unable to refresh Mojang service status.')
-        statuses = MojangRestAPI.getDefaultStatuses()
-    }
-    
-    greenCount = 0
-    greyCount = 0
-
-    for(let i=0; i<statuses.length; i++){
-        const service = statuses[i]
-
-        const tooltipHTML = `<div class="mojangStatusContainer">
-            <span class="mojangStatusIcon" style="color: ${MojangRestAPI.statusToHex(service.status)};">&#8226;</span>
-            <span class="mojangStatusName">${service.name}</span>
-        </div>`
-        if(service.essential){
-            tooltipEssentialHTML += tooltipHTML
-        } else {
-            tooltipNonEssentialHTML += tooltipHTML
-        }
-
-        if(service.status === 'yellow' && status !== 'red'){
-            status = 'yellow'
-        } else if(service.status === 'red'){
-            status = 'red'
-        } else {
-            if(service.status === 'grey'){
-                ++greyCount
-            }
-            ++greenCount
-        }
-
-    }
-
-    if(greenCount === statuses.length){
-        if(greyCount === statuses.length){
-            status = 'grey'
-        } else {
-            status = 'green'
-        }
-    }
-    
-    document.getElementById('mojangStatusEssentialContainer').innerHTML = tooltipEssentialHTML
-    document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
-    document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
 }
 
 const refreshServerStatus = async (fade = false) => {
@@ -266,11 +192,8 @@ const refreshServerStatus = async (fade = false) => {
     
 }
 
-refreshMojangStatuses()
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
-// Refresh statuses every hour. The status page itself refreshes every day so...
-let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 60*60*1000)
 // Set refresh rate to once every 5 minutes.
 let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
 
@@ -437,11 +360,6 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
 
 // Keep reference to Minecraft Process
 let proc
-// Is DiscordRPC enabled
-let hasRPC = false
-// Joined server regex
-// Change this if your server uses something different.
-const GAME_JOINED_REGEX = /\[.+\]: Sound engine started/
 const GAME_LAUNCH_REGEX = /^\[.+\]: (?:MinecraftForge .+ Initialized|ModLauncher .+ starting: .+|Loading Minecraft .+ with Fabric Loader .+)$/
 const MIN_LINGER = 5000
 
@@ -557,15 +475,8 @@ async function dlAsync(login = true) {
         let pb = new ProcessBuilder(serv, versionData, modLoaderData, authUser, remote.app.getVersion())
         setLaunchDetails(Lang.queryJS('landing.dlAsync.launchingGame'))
 
-        // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
-        const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
-
         const onLoadComplete = () => {
             toggleLaunchArea(false)
-            if(hasRPC){
-                DiscordWrapper.updateDetails(Lang.queryJS('landing.discord.loading'))
-                proc.stdout.on('data', gameStateChange)
-            }
             proc.stdout.removeListener('data', tempListener)
             proc.stderr.removeListener('data', gameErrorListener)
         }
@@ -586,16 +497,6 @@ async function dlAsync(login = true) {
             }
         }
 
-        // Listener for Discord RPC.
-        const gameStateChange = function(data){
-            data = data.trim()
-            if(SERVER_JOINED_REGEX.test(data)){
-                DiscordWrapper.updateDetails(Lang.queryJS('landing.discord.joined'))
-            } else if(GAME_JOINED_REGEX.test(data)){
-                DiscordWrapper.updateDetails(Lang.queryJS('landing.discord.joining'))
-            }
-        }
-
         const gameErrorListener = function(data){
             data = data.trim()
             if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
@@ -611,20 +512,11 @@ async function dlAsync(login = true) {
             // Bind listeners to stdout.
             proc.stdout.on('data', tempListener)
             proc.stderr.on('data', gameErrorListener)
+            proc.on('close', () => {
+                proc = null
+            })
 
             setLaunchDetails(Lang.queryJS('landing.dlAsync.doneEnjoyServer'))
-
-            // Init Discord Hook
-            if(distro.rawDistribution.discord != null && serv.rawServer.discord != null){
-                DiscordWrapper.initRPC(distro.rawDistribution.discord, serv.rawServer.discord)
-                hasRPC = true
-                proc.on('close', (code, signal) => {
-                    loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
-                    DiscordWrapper.shutdownRPC()
-                    hasRPC = false
-                    proc = null
-                })
-            }
 
         } catch(err) {
 
@@ -636,6 +528,8 @@ async function dlAsync(login = true) {
 
 }
 
+/* eslint-disable @stylistic/indent */
+if(document.getElementById('newsContainer')) {
 /**
  * News Loading Functions
  */
@@ -1023,4 +917,6 @@ async function loadNews(){
     })
 
     return await promise
+}
+/* eslint-enable @stylistic/indent */
 }

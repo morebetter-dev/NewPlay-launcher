@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "Helios Launcher"
+title = "뉴플레이 런처"
 
 [ejs.landing]
 mediaGitHubURL = "https://github.com/dscalzi/HeliosLauncher"
@@ -11,10 +11,10 @@ mediaYouTubeURL = "#"
 mediaDiscordURL = "https://discord.gg/zNWUXdt"
 
 [ejs.settings]
-sourceGithubLink = "https://github.com/dscalZi/HeliosLauncher"
-supportLink = "https://github.com/dscalZi/HeliosLauncher/issues"
+sourceGithubLink = "https://github.com/dscalzi/HeliosLauncher"
+supportLink = "https://github.com/morebetter-dev/NewPlay-launcher/issues"
 
 [ejs.welcome]
-welcomeHeader = "WELCOME TO WESTEROSCRAFT"
-welcomeDescription = "Our mission is to recreate the universe imagined by author George RR Martin in his fantasy series, A Song of Ice and Fire.  Through the collaborative effort of thousands of community members, we have sought to create Westeros as accurately and precisely as possible within Minecraft.  The world we are creating is yours to explore.  Journey from Dorne to Castle Black, and if you aren’t afraid, beyond the Wall itself, but best not delay.  As the words of House Stark ominously warn: Winter is Coming."
-welcomeDescCTA = "You are just a few clicks away from Westeros."
+welcomeHeader = "뉴플레이에 오신 것을 환영합니다"
+welcomeDescription = "Minecraft 1.21.4와 필수 모드를 자동으로 준비합니다."
+welcomeDescCTA = "Microsoft 계정으로 로그인하면 바로 시작할 수 있습니다."

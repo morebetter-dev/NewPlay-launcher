@@ -1,0 +1,273 @@
+:root {
+    --np-bg: #0f0f0f;
+    --np-bg-low: #0a0a0a;
+    --np-card: #1a1a1a;
+    --np-inner: #252525;
+    --np-border: #333333;
+    --np-brand: oklch(0.63 0.151 9);
+    --np-text: #f5f5f5;
+    --np-muted: #b8b8b8;
+}
+
+body,
+#main,
+#landingContainer,
+#settingsContainer {
+    background: var(--np-bg);
+    color: var(--np-text);
+    font-family: Pretendard, "Segoe UI", sans-serif;
+}
+
+#main {
+    background-image: none;
+}
+
+body #main {
+    background: var(--np-bg);
+}
+
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--np-brand);
+    outline-offset: 2px;
+}
+
+button:hover {
+    box-shadow: inset 0 0 0 999px color-mix(in oklch, var(--np-brand) 15%, transparent);
+}
+
+#landingContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    overflow: hidden;
+    padding: 28px 40px 32px;
+}
+
+.newplayHeader,
+.newplayAccount,
+.newplayDashboard,
+.newplayLaunchBar,
+#server_status_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.newplayHeader {
+    justify-content: space-between;
+    min-height: 60px;
+}
+
+.newplayLogo {
+    width: 120px;
+    height: 60px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.newplayAccount {
+    gap: 12px;
+}
+
+#avatarContainer {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--np-border);
+    box-shadow: none;
+}
+
+#user_text {
+    position: static;
+    min-width: 0;
+    color: var(--np-muted);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-shadow: none;
+}
+
+#settingsMediaButton,
+#launch_button {
+    border: 1px solid var(--np-border);
+    border-radius: 7px;
+    color: var(--np-text);
+    cursor: pointer;
+}
+
+#settingsMediaButton {
+    padding: 8px 14px;
+    background: var(--np-card);
+}
+
+.newplayDashboard {
+    flex: 1;
+    align-items: stretch;
+    gap: 18px;
+    min-height: 0;
+}
+
+.newplayCard {
+    box-sizing: border-box;
+    background: var(--np-card);
+    border: 1px solid #252525;
+    border-radius: 8px;
+    padding: 28px;
+}
+
+.newplayServerCard {
+    flex: 1.35;
+}
+
+.newplayPackCard {
+    flex: 1;
+}
+
+.newplayEyebrow {
+    color: var(--np-brand);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.newplayCard h1,
+.newplayCard h2 {
+    margin: 14px 0 8px;
+    line-height: 1;
+}
+
+.newplayCard h1 {
+    font-size: 34px;
+}
+
+.newplayCard h2 {
+    font-size: 26px;
+}
+
+.newplayCard p {
+    margin: 0;
+    color: var(--np-muted);
+    font-size: 13px;
+}
+
+#server_status_wrapper {
+    gap: 10px;
+    margin-top: 28px;
+    width: fit-content;
+    color: var(--np-muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+#player_count {
+    color: var(--np-brand);
+    margin-left: 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+.newplayLaunchBar {
+    min-height: 60px;
+    justify-content: flex-end;
+}
+
+#launch_content,
+#launch_details {
+    position: static;
+}
+
+#launch_button {
+    min-width: 180px;
+    padding: 14px 28px;
+    background: var(--np-brand);
+    border-color: transparent;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-shadow: none;
+}
+
+#launch_button:hover,
+#launch_button:focus {
+    text-shadow: none;
+}
+
+#launch_details {
+    align-items: center;
+    gap: 12px;
+}
+
+#launch_progress[value] {
+    width: 280px;
+}
+
+#launch_progress[value]::-webkit-progress-value {
+    background-color: var(--np-brand);
+}
+
+#loadingContainer {
+    background: var(--np-bg-low);
+}
+
+#loadCenterImage {
+    position: static;
+    width: 190px;
+}
+
+#loadSpinnerImage {
+    display: none;
+}
+
+#settingsContainerLeft {
+    background: var(--np-bg-low);
+    border-right: 1px solid var(--np-border);
+}
+
+#settingsContainer,
+#settingsContainerRight,
+#settingsTabMods,
+#settingsModsContainer,
+#settingsShadersContainer,
+#settingsShaderpackWrapper,
+.settingsSelectContainer {
+    overflow: visible;
+}
+
+#settingsTabMods {
+    position: relative;
+}
+
+#settingsShadersContainer {
+    position: relative;
+    z-index: 50;
+}
+
+#settingsShaderpackWrapper {
+    width: 90%;
+}
+
+.settingsSelectContainer {
+    z-index: 100;
+}
+
+.settingsSelectSelected,
+.settingsSelectOptions div {
+    background: var(--np-inner);
+}
+
+.settingsSelectOptions {
+    position: absolute;
+    z-index: 9999;
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--np-inner);
+    border: 1px solid var(--np-border);
+}
+
+#settingsAboutLogo {
+    width: 96px;
+    height: 48px;
+    object-fit: contain;
+}
