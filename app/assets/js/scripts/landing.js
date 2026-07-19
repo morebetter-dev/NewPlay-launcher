@@ -25,6 +25,8 @@ const {
 
 // Internal Requirements
 const ProcessBuilder          = require('./assets/js/processbuilder')
+const ShaderUtil              = require('./assets/js/dropinmodutil')
+const NewPlayConstants        = require('./assets/js/newplayconstants')
 
 // Launch Elements
 const launch_content          = document.getElementById('launch_content')
@@ -454,6 +456,9 @@ async function dlAsync(login = true) {
     remote.getCurrentWindow().setProgressBar(-1)
 
     fullRepairModule.destroyReceiver()
+
+    const instanceDir = path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id)
+    ShaderUtil.ensureDefaultShaderpack(instanceDir, NewPlayConstants.DEFAULT_SHADERPACK.fileName)
 
     setLaunchDetails(Lang.queryJS('landing.dlAsync.preparingToLaunch'))
 

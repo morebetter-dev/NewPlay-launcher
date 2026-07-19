@@ -14,6 +14,14 @@ const SHADER_OPTION = /shaderPack=(.+)/
 const SHADER_DIR = 'shaderpacks'
 const SHADER_CONFIG = 'optionsshaders.txt'
 
+function setShaderOption(buf, key, value){
+    const option = new RegExp(`^${key}=.*$`, 'm')
+    if(option.test(buf)){
+        return buf.replace(option, `${key}=${value}`)
+    }
+    return `${buf.length > 0 ? `${buf.trimEnd()}\n` : ''}${key}=${value}`
+}
+
 /**
  * Validate that the given directory exists. If not, it is
  * created.
@@ -207,14 +215,21 @@ exports.setEnabledShaderpack = function(instanceDir, pack){
     exports.validateDir(instanceDir)
 
     const optionsShaders = path.join(instanceDir, SHADER_CONFIG)
-    let buf
-    if(fs.existsSync(optionsShaders)){
-        buf = fs.readFileSync(optionsShaders, {encoding: 'utf-8'})
-        buf = buf.replace(SHADER_OPTION, `shaderPack=${pack}`)
-    } else {
-        buf = `shaderPack=${pack}`
-    }
+    let buf = fs.existsSync(optionsShaders)
+        ? fs.readFileSync(optionsShaders, {encoding: 'utf-8'})
+        : ''
+    buf = setShaderOption(buf, 'shaderPack', pack)
+    buf = setShaderOption(buf, 'enableShaders', pack === 'OFF' ? 'false' : 'true')
     fs.writeFileSync(optionsShaders, buf, {encoding: 'utf-8'})
+}
+
+exports.ensureDefaultShaderpack = function(instanceDir, pack){
+    exports.validateDir(instanceDir)
+    if(fs.existsSync(path.join(instanceDir, SHADER_CONFIG))){
+        return false
+    }
+    exports.setEnabledShaderpack(instanceDir, pack)
+    return true
 }
 
 /**
