@@ -1,0 +1,63 @@
+<style>
+  .style-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
+  .style-card { border:2px solid transparent; border-radius:18px; overflow:hidden; background:#151821; cursor:pointer; transition:.18s ease; }
+  .style-card:hover { transform:translateY(-3px); border-color:#8b91a7; }
+  .style-card.selected { border-color:#ff5577; box-shadow:0 0 0 4px #ff557733; }
+  .preview { min-height:300px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; }
+  .brand { display:flex; align-items:center; gap:9px; font-size:16px; }
+  .cherry { width:34px; height:34px; display:grid; place-items:center; border-radius:12px; font-size:21px; }
+  .hero { padding:26px 0 18px; }
+  .hero h3 { margin:0 0 7px; font-size:25px; }
+  .hero p { margin:0; opacity:.75; font-size:13px; }
+  .server { border-radius:14px; padding:13px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .server small { display:block; opacity:.7; margin-top:2px; }
+  .play { border:0; border-radius:11px; padding:12px 20px; font-weight:900; }
+  .cream { background:linear-gradient(145deg,#fff5f7,#ffdce4); color:#542b35; }
+  .cream .cherry,.cream .play { background:#e93d63; color:white; }
+  .cream .server { background:#ffffffa8; box-shadow:0 12px 34px #9f38501c; }
+  .arcade { background:radial-gradient(circle at 85% 15%,#a6004c 0,#26051a 27%,#090a11 62%); color:#fff; }
+  .arcade .cherry { background:#ff1b6b; box-shadow:0 0 24px #ff1b6baa; }
+  .arcade .server { background:#121522dd; border:1px solid #ff3677aa; }
+  .arcade .play { background:#ff2d70; color:white; box-shadow:0 0 18px #ff2d7066; }
+  .grove { background:linear-gradient(150deg,#13241c,#273d2e 55%,#51252a); color:#f7efe4; }
+  .grove .cherry { background:#f3d8c3; color:#9f2840; }
+  .grove .server { background:#f6eadb14; border:1px solid #f6eadb35; }
+  .grove .play { background:#f0d4bd; color:#4e2830; }
+  .caption { padding:15px 16px 17px; }
+  .caption h3 { margin:0 0 5px; }
+  .caption p { margin:0; color:#aeb4c5; font-size:13px; line-height:1.45; }
+  @media(max-width:900px){ .style-grid{grid-template-columns:1fr;} }
+</style>
+
+<h2>체리부 런처의 분위기를 골라주세요</h2>
+<p class="subtitle">레이아웃은 같고 색상·질감·브랜드 인상만 비교한 시안입니다.</p>
+
+<div class="style-grid">
+  <div class="style-card card" data-choice="cherry-cream" onclick="toggleSelect(this)">
+    <div class="preview cream">
+      <div class="topbar"><div class="brand"><span class="cherry">🍒</span> 체리부 런처</div><span>— □ ×</span></div>
+      <div class="hero"><h3>어서 와요!</h3><p>뉴플레이 서버에서 바로 만나요.</p></div>
+      <div class="server"><div><strong>NEWPLAY.KR</strong><small>● 서버 온라인</small></div><button class="play">게임 시작</button></div>
+    </div>
+    <div class="caption"><h3>A · 체리 크림</h3><p>밝은 크림·핑크. 귀엽고 친근한 캐주얼 인상.</p></div>
+  </div>
+
+  <div class="style-card card" data-choice="cherry-arcade" onclick="toggleSelect(this)">
+    <div class="preview arcade">
+      <div class="topbar"><div class="brand"><span class="cherry">🍒</span> CHERRYBOO</div><span>— □ ×</span></div>
+      <div class="hero"><h3>READY TO PLAY?</h3><p>Fabric 1.21.4 · Complementary Unbound</p></div>
+      <div class="server"><div><strong>NEWPLAY.KR</strong><small>● 18 / 100 PLAYERS</small></div><button class="play">PLAY</button></div>
+    </div>
+    <div class="caption"><h3>B · 체리 아케이드</h3><p>블랙·네온 핑크. 게임 런처다운 강하고 현대적인 인상.</p></div>
+  </div>
+
+  <div class="style-card card" data-choice="cherry-grove" onclick="toggleSelect(this)">
+    <div class="preview grove">
+      <div class="topbar"><div class="brand"><span class="cherry">🍒</span> 체리부</div><span>— □ ×</span></div>
+      <div class="hero"><h3>새로운 모험을 시작해요</h3><p>따뜻한 숲, 선명한 셰이더, 뉴플레이.</p></div>
+      <div class="server"><div><strong>newplay.kr</strong><small>● 접속 가능</small></div><button class="play">시작하기</button></div>
+    </div>
+    <div class="caption"><h3>C · 체리 그로브</h3><p>짙은 녹색·체리 레드·베이지. 마인크래프트 풍경과 어울리는 차분한 인상.</p></div>
+  </div>
+</div>
