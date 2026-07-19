@@ -16,7 +16,9 @@
     "test": "node --test",
     "dist": "electron-builder build",
     "dist:win": "npm run dist -- -w --x64",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pack:prepare": "node scripts/prepare-pages.js",
+    "pack:verify": "node scripts/verify-distribution.js site/distribution.json"
   },
   "engines": {
     "node": "22.x.x"

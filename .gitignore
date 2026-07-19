@@ -5,6 +5,8 @@
 /logs/
 /dist/
 /site/
+/pack/distribution.json
+/pack/repo/
 /pack/schemas/
 /pack/.cache/
 /pack/servers/NewPlay-1.21.4/files/shaderpacks/*.zip
