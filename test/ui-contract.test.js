@@ -42,3 +42,9 @@ test('Korean overrides load before launcher custom text', () => {
     const loader = read('app/assets/js/langloader.js')
     assert.match(loader, /loadLanguage\('en_US'\)[\s\S]*loadLanguage\('ko_KR'\)[\s\S]*loadLanguage\('_custom'\)/)
 })
+
+test('Microsoft auth errors are recognized for display', () => {
+    const { isDisplayableError } = require('../app/assets/js/displayableerror')
+    assert.equal(isDisplayableError({ title: '인증 실패', desc: '다시 시도해 주세요.' }), true)
+    assert.equal(isDisplayableError(undefined), false)
+})

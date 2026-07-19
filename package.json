@@ -18,7 +18,8 @@
     "dist:win": "npm run dist -- -w --x64",
     "lint": "eslint .",
     "pack:prepare": "node scripts/prepare-pages.js",
-    "pack:verify": "node scripts/verify-distribution.js site/distribution.json"
+    "pack:verify": "node scripts/verify-distribution.js site/distribution.json",
+    "verify:release": "node scripts/verify-release-config.js"
   },
   "engines": {
     "node": "22.x.x"
