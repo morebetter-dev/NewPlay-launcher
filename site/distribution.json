@@ -1,0 +1,296 @@
+{
+  "version": "1.0.0",
+  "rss": "https://morebetter-dev.github.io/NewPlay-launcher/news.xml",
+  "servers": [
+    {
+      "id": "NewPlay-1.21.4",
+      "name": "체리부",
+      "description": "뉴플레이 Minecraft 1.21.4",
+      "icon": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/NewPlay.png",
+      "version": "1.0.5",
+      "address": "newplay.kr",
+      "minecraftVersion": "1.21.4",
+      "mainServer": true,
+      "autoconnect": true,
+      "javaOptions": {
+        "supported": ">=21 <22",
+        "suggestedMajor": 21,
+        "ram": {
+          "minimum": 2048,
+          "recommended": 4096
+        }
+      },
+      "modules": [
+        {
+          "id": "net.fabricmc:fabric-loader:0.16.9",
+          "name": "Fabric (fabric-loader)",
+          "type": "Fabric",
+          "artifact": {
+            "size": 1387357,
+            "MD5": "27a6ef87676ce6316c777d81c1cd2962",
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/net/fabricmc/fabric-loader/0.16.9/fabric-loader-0.16.9.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.4-fabric-0.16.9",
+              "name": "Fabric (version.json)",
+              "type": "VersionManifest",
+              "artifact": {
+                "size": 2857,
+                "MD5": "c1f5a2099ad6f58e18212647e8184c02",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/versions/1.21.4-fabric-0.16.9/1.21.4-fabric-0.16.9.json"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm:9.7.1",
+              "name": "Fabric (asm)",
+              "type": "Library",
+              "artifact": {
+                "size": 126093,
+                "MD5": "e2cdd32d198ad31427d298eee9d39d8d",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-analysis:9.7.1",
+              "name": "Fabric (asm-analysis)",
+              "type": "Library",
+              "artifact": {
+                "size": 35126,
+                "MD5": "4cd9e7178dfb85371bba3077e40cd514",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/org/ow2/asm/asm-analysis/9.7.1/asm-analysis-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-commons:9.7.1",
+              "name": "Fabric (asm-commons)",
+              "type": "Library",
+              "artifact": {
+                "size": 73459,
+                "MD5": "8344aea3c8b7d707e9d35a62710e77c9",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/org/ow2/asm/asm-commons/9.7.1/asm-commons-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-tree:9.7.1",
+              "name": "Fabric (asm-tree)",
+              "type": "Library",
+              "artifact": {
+                "size": 51939,
+                "MD5": "e85029f613b6469989cc7cf53fe06b74",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/org/ow2/asm/asm-tree/9.7.1/asm-tree-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-util:9.7.1",
+              "name": "Fabric (asm-util)",
+              "type": "Library",
+              "artifact": {
+                "size": 94519,
+                "MD5": "36d373a9cd6cad9b35db9f984c6b4bbb",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/org/ow2/asm/asm-util/9.7.1/asm-util-9.7.1.jar"
+              }
+            },
+            {
+              "id": "net.fabricmc:sponge-mixin:0.15.4+mixin.0.8.7",
+              "name": "Fabric (sponge-mixin)",
+              "type": "Library",
+              "artifact": {
+                "size": 1494834,
+                "MD5": "991ca8be2c408fe19eb64014d8a18243",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/net/fabricmc/sponge-mixin/0.15.4+mixin.0.8.7/sponge-mixin-0.15.4+mixin.0.8.7.jar"
+              }
+            },
+            {
+              "id": "net.fabricmc:intermediary:1.21.4",
+              "name": "Fabric (intermediary)",
+              "type": "Library",
+              "artifact": {
+                "size": 701826,
+                "MD5": "d0f4187a62328d4a95f3428434efbd48",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/net/fabricmc/intermediary/1.21.4/intermediary-1.21.4.jar"
+              }
+            }
+          ]
+        },
+        {
+          "id": "eu.midnightdust:customsplashscreen:2.3.0+newplay.1.21.4@jar",
+          "name": "Custom Splash Screen",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 662535,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/customsplashscreen-2.3.0-newplay.1.21.4.jar",
+            "MD5": "2fb73201a070786e2756f8292967c756"
+          }
+        },
+        {
+          "id": "traben.entity_model_features:entity_model_features:3.2.4@jar",
+          "name": "Entity Model Features",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 571566,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/optionalon/entity_model_features-3.2.4-1.21.4-fabric.jar",
+            "MD5": "4c634c37cc4a25b8841325c8e1a9d3a2"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "traben.entity_texture_features:entity_texture_features:7.1@jar",
+          "name": "Entity Texture Features",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 748896,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/optionalon/entity_texture_features_1.21.4-fabric-7.1.jar",
+            "MD5": "1723923e2c50bfdd4efd0cd5671551b7"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "dev.tr7zw:entityculling:1.10.5@jar",
+          "name": "EntityCulling",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1597405,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/entityculling-fabric-1.10.5-mc1.21.4.jar",
+            "MD5": "4b254503795dd15ac31b2cb8c8fae70a"
+          }
+        },
+        {
+          "id": "generated.fabricmod:fabric-api:0.119.4+1.21.4@jar",
+          "name": "Fabric API",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2149128,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/fabric-api-0.119.4+1.21.4.jar",
+            "MD5": "128a8d042180e7c92567342e21a21a6d"
+          }
+        },
+        {
+          "id": "generated.fabricmod:ferritecore:7.1.3@jar",
+          "name": "FerriteCore",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 109879,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/ferritecore-7.1.3-fabric.jar",
+            "MD5": "cd9fba194e3409f486a9c25a26518c8e"
+          }
+        },
+        {
+          "id": "generated.fabricmod:iris:1.8.8+mc1.21.4@jar",
+          "name": "Iris",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2682702,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/optionalon/iris-fabric-1.8.8+mc1.21.4.jar",
+            "MD5": "59d373e4874efbcb8fb426bdefa588d9"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.example.keyevent:keyeventmod:1.21.4@jar",
+          "name": "Key Checker Mod",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 5937,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/KeyChecker-1.21.4.jar",
+            "MD5": "ff7141b1402454eddab71fa974d47614"
+          }
+        },
+        {
+          "id": "net.caffeinemc.mods:lithium:0.15.3+mc1.21.4@jar",
+          "name": "Lithium",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 797555,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/lithium-fabric-0.15.3+mc1.21.4.jar",
+            "MD5": "7a3a807eed9c4868fbe14cecd8bb082d"
+          }
+        },
+        {
+          "id": "dev.tr7zw.skinlayers:skinlayers3d:1.11.2@jar",
+          "name": "3d-Skin-Layers",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1983996,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/optionalon/skinlayers3d-fabric-1.11.2-mc1.21.4.jar",
+            "MD5": "25dc5a7408d0f7001d2c7cb31d839839"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.caffeinemc.mods:sodium:0.6.9+mc1.21.4@jar",
+          "name": "Sodium",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1296933,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/sodium-fabric-0.6.9+mc1.21.4.jar",
+            "MD5": "2448186bfe43c0b187daef8e34810a91"
+          }
+        },
+        {
+          "id": "background.png",
+          "name": "background.png",
+          "type": "File",
+          "artifact": {
+            "size": 3494186,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/config/customsplashscreen/background.png",
+            "MD5": "3bfa9d221665079196f8eaee7a39cacc",
+            "path": "config/customsplashscreen/background.png"
+          }
+        },
+        {
+          "id": "customsplashscreen.json",
+          "name": "customsplashscreen.json",
+          "type": "File",
+          "artifact": {
+            "size": 426,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/config/customsplashscreen.json",
+            "MD5": "5a0bdf8d92f50f961c474fe2402c94d1",
+            "path": "config/customsplashscreen.json"
+          }
+        },
+        {
+          "id": "+1.21.3 Fresh Moves v3.1.1 (No Animated Eyes).zip",
+          "name": "+1.21.3 Fresh Moves v3.1.1 (No Animated Eyes).zip",
+          "type": "File",
+          "artifact": {
+            "size": 251409,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/resourcepacks/+1.21.3%20Fresh%20Moves%20v3.1.1%20(No%20Animated%20Eyes).zip",
+            "MD5": "00ff9fd86fc50a8859b5e5ef2e9cf1cc",
+            "path": "resourcepacks/+1.21.3 Fresh Moves v3.1.1 (No Animated Eyes).zip"
+          }
+        },
+        {
+          "id": "FreshAnimations_v1.10.4.zip",
+          "name": "FreshAnimations_v1.10.4.zip",
+          "type": "File",
+          "artifact": {
+            "size": 850941,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/resourcepacks/FreshAnimations_v1.10.4.zip",
+            "MD5": "ab0e8cc3444e98f0fd51ac0d84533d52",
+            "path": "resourcepacks/FreshAnimations_v1.10.4.zip"
+          }
+        },
+        {
+          "id": "ComplementaryUnbound_r5.8.1.zip",
+          "name": "ComplementaryUnbound_r5.8.1.zip",
+          "type": "File",
+          "artifact": {
+            "size": 546928,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/shaderpacks/ComplementaryUnbound_r5.8.1.zip",
+            "MD5": "0a3553109dbe689a9f76d1aedc8f50c6",
+            "path": "shaderpacks/ComplementaryUnbound_r5.8.1.zip"
+          }
+        }
+      ]
+    }
+  ]
+}
