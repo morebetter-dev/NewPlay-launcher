@@ -7,7 +7,7 @@
       "name": "체리부",
       "description": "뉴플레이 Minecraft 1.21.4",
       "icon": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/NewPlay.png",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "address": "newplay.kr",
       "minecraftVersion": "1.21.4",
       "mainServer": true,
@@ -260,9 +260,9 @@
           "name": "background.png",
           "type": "File",
           "artifact": {
-            "size": 3494186,
+            "size": 8900,
             "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/config/customsplashscreen/background.png",
-            "MD5": "3bfa9d221665079196f8eaee7a39cacc",
+            "MD5": "18cd51aa843a1addd4dac66a125f1661",
             "path": "config/customsplashscreen/background.png"
           }
         },
