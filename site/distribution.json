@@ -7,7 +7,7 @@
       "name": "체리부",
       "description": "뉴플레이 Minecraft 1.21.4",
       "icon": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/NewPlay.png",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "address": "newplay.kr",
       "minecraftVersion": "1.21.4",
       "mainServer": true,
@@ -22,23 +22,23 @@
       },
       "modules": [
         {
-          "id": "net.fabricmc:fabric-loader:0.16.9",
+          "id": "net.fabricmc:fabric-loader:0.16.10",
           "name": "Fabric (fabric-loader)",
           "type": "Fabric",
           "artifact": {
-            "size": 1387357,
-            "MD5": "27a6ef87676ce6316c777d81c1cd2962",
-            "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/net/fabricmc/fabric-loader/0.16.9/fabric-loader-0.16.9.jar"
+            "size": 1387408,
+            "MD5": "239d59118dec4324672b3d9e9d75efef",
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/lib/net/fabricmc/fabric-loader/0.16.10/fabric-loader-0.16.10.jar"
           },
           "subModules": [
             {
-              "id": "1.21.4-fabric-0.16.9",
+              "id": "1.21.4-fabric-0.16.10",
               "name": "Fabric (version.json)",
               "type": "VersionManifest",
               "artifact": {
-                "size": 2857,
-                "MD5": "c1f5a2099ad6f58e18212647e8184c02",
-                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/versions/1.21.4-fabric-0.16.9/1.21.4-fabric-0.16.9.json"
+                "size": 2859,
+                "MD5": "286b2d4be09d0f2a0a41d9f19b7de2bf",
+                "url": "https://morebetter-dev.github.io/NewPlay-launcher/repo/versions/1.21.4-fabric-0.16.10/1.21.4-fabric-0.16.10.json"
               }
             },
             {
@@ -180,6 +180,16 @@
           }
         },
         {
+          "id": "generated.fabricmod:immediatelyfast:1.8.7+1.21.4@jar",
+          "name": "ImmediatelyFast",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 332486,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/ImmediatelyFast-Fabric-1.8.7+1.21.4.jar",
+            "MD5": "e8f960b20c981f83c40b28087b43c92d"
+          }
+        },
+        {
           "id": "generated.fabricmod:iris:1.8.8+mc1.21.4@jar",
           "name": "Iris",
           "type": "FabricMod",
@@ -210,6 +220,16 @@
             "size": 797555,
             "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/lithium-fabric-0.15.3+mc1.21.4.jar",
             "MD5": "7a3a807eed9c4868fbe14cecd8bb082d"
+          }
+        },
+        {
+          "id": "org.embeddedt:modernfix:5.20.3+mc1.21.4@jar",
+          "name": "ModernFix",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 436498,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/modernfix-fabric-5.20.3+mc1.21.4.jar",
+            "MD5": "1bee2326edcced182b86154e44810971"
           }
         },
         {
@@ -277,6 +297,17 @@
             "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/resourcepacks/FreshAnimations_v1.10.4.zip",
             "MD5": "ab0e8cc3444e98f0fd51ac0d84533d52",
             "path": "resourcepacks/FreshAnimations_v1.10.4.zip"
+          }
+        },
+        {
+          "id": "No Pumpkin Filter 1.11.2.zip",
+          "name": "No Pumpkin Filter 1.11.2.zip",
+          "type": "File",
+          "artifact": {
+            "size": 18738,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/files/resourcepacks/No%20Pumpkin%20Filter%201.11.2.zip",
+            "MD5": "7b197e8d869e268ec2e10c9c53a87b22",
+            "path": "resourcepacks/No Pumpkin Filter 1.11.2.zip"
           }
         },
         {
