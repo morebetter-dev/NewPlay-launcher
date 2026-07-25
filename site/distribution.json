@@ -7,7 +7,7 @@
       "name": "체리부",
       "description": "뉴플레이 Minecraft 1.21.4",
       "icon": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/NewPlay.png",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "address": "newplay.kr",
       "minecraftVersion": "1.21.4",
       "mainServer": true,
@@ -210,6 +210,16 @@
             "size": 5937,
             "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/KeyChecker-1.21.4.jar",
             "MD5": "ff7141b1402454eddab71fa974d47614"
+          }
+        },
+        {
+          "id": "com.hyfata.najoan:koreanpatch:1.9.6+mc1.21.3@jar",
+          "name": "Korean Patch",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 655990,
+            "url": "https://morebetter-dev.github.io/NewPlay-launcher/servers/NewPlay-1.21.4/fabricmods/required/koreanpatch-fabric-1.9.6+mc1.21.3.jar",
+            "MD5": "c95329994b4cc793ec412462543c4f67"
           }
         },
         {
